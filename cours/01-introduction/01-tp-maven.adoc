@@ -1,0 +1,226 @@
+:source-highlighter: pygments
+:icons: font
+
+:toc: left
+:toclevels: 4
+
+:sectlinks:
+:sectanchors:
+:sectnums:
+
+= ALOM - TP 1 - Setup, Maven & Tooling
+
+
+== Installation
+
+=== Vérification de l'installation de Java
+
+[source,bash]
+----
+$ java -version
+openjdk version "16.0.1" 2021-04-20
+OpenJDK Runtime Environment (build 16.0.1+9-24)
+OpenJDK 64-Bit Server VM (build 16.0.1+9-24, mixed mode, sharing)
+
+$ echo $JAVA_HOME
+/opt/jdk-16.0.1
+----
+
+=== Configuration de Java 16 sur les postes de l'université
+
+Modifier le fichier `~/.bashrc` pour y ajouter les lignes suivantes :
+
+[source,bash]
+----
+export JAVA_HOME=/usr/lib/jvm/jdk-16.0.1
+export PATH=$JAVA_HOME/bin:$PATH
+----
+
+
+[IMPORTANT]
+====
+Java *doit* être installé et la variable d'environnement `JAVA_HOME` *doit* être renseignée.
+====
+
+[NOTE]
+====
+Si Java n'est pas installé, vous pouvez télécharger une distribution de Java chez Adoptium : https://adoptium.net/
+====
+
+[NOTE]
+====
+Le code des TP est écrit pour être compatible Java 11, et sera migré vers Java 17 dans les prochaines semaines.
+====
+
+=== Vérification de l'installation de Maven
+
+[source,bash]
+----
+$ mvn -v
+Apache Maven 3.6.1 (d66c9c0b3152b2e69ee9bac180bb8fcc8e6af555; 2019-04-04T21:00:29+02:00)
+Maven home: /opt/apache-maven-3.6.1
+Java version: 16.0.1, vendor: Oracle Corporation, runtime: /opt/jdk-16.0.1
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "5.11.0-31-generic", arch: "amd64", family: "unix"
+----
+
+[NOTE]
+====
+Si Maven n'est pas installé, suivre la procédure sur http://maven.apache.org/download.cgi et http://maven.apache.org/install.html
+
+1. Télécharger maven
+2. extraire le zip ou le tar.gz
+3. Ajouter le répertoire `bin` au `PATH`
+====
+
+
+
+=== Configuration du localRepository
+
+La création d'un lien symbolique en remplacement du répertoire local maven permet de sauver votre quota !
+
+[source,bash]
+----
+$ mkdir -p ~/.m2 <1>
+$ mkdir -p /local/<username>/.m2/repository <2>
+$ ln -s /local/<username>/.m2/repository ~/.m2/repository <3>
+----
+<1> Création du répertoire local maven (dans le home par défaut)
+<2> Création d'un répertoire sur le disque /local (non soumis à quota)
+<3> Création du lien symbolique
+
+[WARNING]
+====
+Cette étape est cruciale, car elle pourrait sauver votre quota si vous travaillez sur les PC de la fac!
+====
+
+== Initialisation du projet
+
+=== Création de l'arborescence projet
+
+Créer un répertoire projet:
+
+[source,bash]
+----
+$ mkdir monProjet
+----
+
+Créer les répertoires de sources java et de test
+
+[source,bash]
+----
+$ cd monProjet
+$ mkdir -p src/main/java
+$ mkdir -p src/test/java
+----
+
+Initialiser un fichier pom.xml à la racine du projet
+
+[source,xml,linenums]
+----
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.alom.tp</groupId>
+    <artifactId>tp-maven</artifactId>
+    <version>0.1.0</version>
+
+    <properties>
+        <maven.compiler.source>16</maven.compiler.source> <!--1-->
+        <maven.compiler.target>16</maven.compiler.target> <!--2-->
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+        </dependency>
+    </dependencies>
+
+</project>
+----
+<1> On indique à maven quelle version de Java utiliser pour les sources !
+<2> On indique à maven quelle version de JVM on cible !
+
+=== Ajouter du code !
+
+Créer une classe Java dans le répertoire `src/main/java`
+
+.Hello.java
+[source,java,linenums]
+----
+public class Hello{
+    public String getMessage() {
+        return "Hello World";
+    }
+}
+----
+
+Créer une classe de tests unitaires dans le répertoire `src/test/java`
+
+.HelloTest.java
+[source,java,linenums]
+----
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class HelloTest{
+
+    @Test
+    public void testGetMessage(){
+        assertEquals("Hello World", new Hello().getMessage());
+    }
+
+}
+----
+
+=== Exécuter les tests
+
+Lancer la commande
+
+[source,bash]
+----
+$ mvn test
+
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------< com.alom.tp:tp-maven >-------------------------
+[INFO] Building tp-maven 0.1.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ tp-maven ---
+[INFO] skip non existing resourceDirectory /home/jwittouck/workspaces/alom/tp-alom-2020-2021/src/main/resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ tp-maven ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/jwittouck/workspaces/alom/tp-alom-2020-2021/target/classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ tp-maven ---
+[INFO] skip non existing resourceDirectory /home/jwittouck/workspaces/alom/tp-alom-2020-2021/src/test/resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ tp-maven ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/jwittouck/workspaces/alom/tp-alom-2020-2021/target/test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ tp-maven ---
+[INFO] Surefire report directory: /home/jwittouck/workspaces/alom/tp-alom-2020-2021/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running HelloTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.626 s
+[INFO] Finished at: 2020-10-19T17:15:21+02:00
+[INFO] ------------------------------------------------------------------------
+
+----
+
