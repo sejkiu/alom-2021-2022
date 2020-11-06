@@ -28,11 +28,13 @@ Vous devez push votre code directement sur les repositories qui vous sont affect
 
 Les repositories seront clôturés le 22 décembre à 20h. Vous avez donc encore un peu de temps pour finaliser votre projet.
 
-Le projet est bien constitué de 3 parties jusqu'à aujourd'hui, et d'autres parties qui seront initialisées dans les TP à venir:
+Le projet est bien constitué de 5 parties :
 
 * pokemon-type-api
 * trainer-api
 * game-ui
+* battle-api
+* shop-api
 
 NOTE: Le tp "handcraft" ne fait pas partie du rendu.
 
@@ -43,7 +45,7 @@ Dans chacun des repository :
 * une collection Postman pour les API exposant de l'HTTP (pas l'api notification, ni configuration)
 * un README.md détaillant
 ** la façon de lancer le projet localement (commandes maven ? properties à configurer ?)
-** l'url de publication de votre service s'il est publié sur un cloud heroku/clever
+** l'url de publication de votre service sur Clever-Cloud
 
 NOTE: Evitez de commiter/pusher vos répertoires `target` et vos fichiers eclipse/intelliJ `.idea`, `.settings`...
 Vous pouvez ajouter un fichier `.gitignore` à la racine de vos projets pour cela.
@@ -81,14 +83,14 @@ Vous pouvez ajouter un fichier `.gitignore` à la racine de vos projets pour cel
 | inscription au jeu, changement de mot de passe, ajout/suppression de pokemons à mon équipe
 | 2
 
-| configuration-api / configuration-repository
-| configuration des api, gestion de profils tous micro-services
+| configuration cloud
+| configuration des api, gestion de profils tous micro-services, déploiement sur Clever-Cloud, métriques exposées
 | 1
 
 // socle commun : 9 points
 
 | battle-api
-| gestion des combats (création/attaque)
+| gestion des combats (création/attaque), gain d'expérience
 | 3
 
 | game-ui

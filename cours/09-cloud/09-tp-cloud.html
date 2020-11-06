@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>ALOM - Critères de notation</title>
+<title>ALOM - TP 9 - Patterns Cloud</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -435,202 +435,497 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>ALOM - Critères de notation</h1>
+<h1>ALOM - TP 9 - Patterns Cloud</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_modalités_de_rendu">1. Modalités de rendu</a></li>
-<li><a href="#_critères_de_notation">2. Critères de notation</a></li>
+<li><a href="#_présentation_et_objectifs">1. Présentation et objectifs</a></li>
+<li><a href="#_création_de_profils_et_activation">2. Création de profils et activation</a>
+<ul class="sectlevel2">
+<li><a href="#_extraction_des_profils">2.1. Extraction des profils</a></li>
+<li><a href="#_activation_des_profils">2.2. Activation des profils</a>
+<ul class="sectlevel3">
+<li><a href="#_sur_votre_poste">2.2.1. Sur votre poste</a></li>
+<li><a href="#_sur_lenvironnement_clever">2.2.2. Sur l&#8217;environnement Clever</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_exposition_de_métriques">3. Exposition de métriques</a>
+<ul class="sectlevel2">
+<li><a href="#_dépendance_maven">3.1. Dépendance maven</a></li>
+<li><a href="#_activer_dautres_endpoints">3.2. Activer d&#8217;autres endpoints</a></li>
+</ul>
+</li>
+<li><a href="#_consommation_dun_bucket">4. Consommation d&#8217;un bucket</a>
+<ul class="sectlevel2">
+<li><a href="#_création_du_bucket">4.1. Création du bucket</a></li>
+<li><a href="#_battle_api">4.2. battle-api</a>
+<ul class="sectlevel3">
+<li><a href="#_dépendance_spring">4.2.1. Dépendance Spring</a></li>
+<li><a href="#_ajout_de_nouvelles_properties">4.2.2. Ajout de nouvelles properties</a></li>
+<li><a href="#_configuration_dun_client_s3">4.2.3. Configuration d&#8217;un client S3</a></li>
+<li><a href="#_création_dun_objet_dans_le_bucket">4.2.4. Création d&#8217;un objet dans le bucket</a></li>
+<li><a href="#_parcours_du_bucket">4.2.5. Parcours du bucket</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_modalités_de_rendu"><a class="anchor" href="#_modalités_de_rendu"></a><a class="link" href="#_modalités_de_rendu">1. Modalités de rendu</a></h2>
+<h2 id="_présentation_et_objectifs"><a class="anchor" href="#_présentation_et_objectifs"></a><a class="link" href="#_présentation_et_objectifs">1. Présentation et objectifs</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Le rendu se fait via vos repositories Github.</p>
+<p>Le but de ce TP est de mettre en place quelques mécaniques pour les développements orientés cloud.</p>
 </div>
 <div class="paragraph">
-<p>Vous devez push votre code directement sur les repositories qui vous sont affectés.</p>
-</div>
-<div class="paragraph">
-<p>Les repositories seront clôturés le 22 décembre à 20h. Vous avez donc encore un peu de temps pour finaliser votre projet.</p>
-</div>
-<div class="paragraph">
-<p>Le projet est bien constitué de 5 parties :</p>
+<p>Nous allons :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>pokemon-type-api</p>
+<p>créer des profils pour chacun de nos micro-services</p>
 </li>
 <li>
-<p>trainer-api</p>
+<p>exposer des métriques avec spring-boot-actuator</p>
 </li>
 <li>
-<p>game-ui</p>
-</li>
-<li>
-<p>battle-api</p>
-</li>
-<li>
-<p>shop-api</p>
+<p>charger un fichier de données depuis un bucket</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Le tp "handcraft" ne fait pas partie du rendu.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Dans chacun des repository :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>le code !</p>
-</li>
-<li>
-<p>les tests !!</p>
-</li>
-<li>
-<p>une collection Postman pour les API exposant de l&#8217;HTTP (pas l&#8217;api notification, ni configuration)</p>
-</li>
-<li>
-<p>un README.md détaillant</p>
-<div class="ulist">
-<ul>
-<li>
-<p>la façon de lancer le projet localement (commandes maven ? properties à configurer ?)</p>
-</li>
-<li>
-<p>l&#8217;url de publication de votre service sur Clever-Cloud</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Evitez de commiter/pusher vos répertoires <code>target</code> et vos fichiers eclipse/intelliJ <code>.idea</code>, <code>.settings</code>&#8230;&#8203;
-Vous pouvez ajouter un fichier <code>.gitignore</code> à la racine de vos projets pour cela.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_critères_de_notation"><a class="anchor" href="#_critères_de_notation"></a><a class="link" href="#_critères_de_notation">2. Critères de notation</a></h2>
+<h2 id="_création_de_profils_et_activation"><a class="anchor" href="#_création_de_profils_et_activation"></a><a class="link" href="#_création_de_profils_et_activation">2. Création de profils et activation</a></h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
+<div class="paragraph">
+<p>Aujourd&#8217;hui, nos micro-services doivent tourner sur plusieurs environnements distincts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>notre poste de développeur</p>
+</li>
+<li>
+<p>un déploiement d&#8217;application Java ou Docker chez Clever-Cloud</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On pourrait aussi imaginer vouloir créer un troisième environnement, de recette métier par exemple.</p>
+</div>
+<div class="sect2">
+<h3 id="_extraction_des_profils"><a class="anchor" href="#_extraction_des_profils"></a><a class="link" href="#_extraction_des_profils">2.1. Extraction des profils</a></h3>
+<div class="paragraph">
+<p>Pour chacun de vos micro-services:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>créez un fichier de configuration <code>application-clever.properties</code>
+Ce fichier contiendra toutes les properties liées à l&#8217;environnement d&#8217;exécution Clever-Cloud,
+par exemple les URL des autres micro-services, et l&#8217;URL de connexion à la base de données.</p>
+</li>
+<li>
+<p>créez un fichier de configuration <code>application-local.properties</code>
+Ce fichier contiendra toutes les properties liées à l&#8217;exécution en local de votre projet,
+par exemple les URL des autres micro-services en <code>localhost</code>, ainsi que les properties <code>server.port</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>À cette étape, vous pouvez vider vos fichiers <code>application.properties</code>, dont le contenu a dû être migré dans les deux fichiers
+<code>application-local.properties</code> et <code>application-clever.properties</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_activation_des_profils"><a class="anchor" href="#_activation_des_profils"></a><a class="link" href="#_activation_des_profils">2.2. Activation des profils</a></h3>
+<div class="sect3">
+<h4 id="_sur_votre_poste"><a class="anchor" href="#_sur_votre_poste"></a><a class="link" href="#_sur_votre_poste">2.2.1. Sur votre poste</a></h4>
+<div class="paragraph">
+<p>Lorsque vous démarrez vos micro-services sur votre poste, il vous faut maintenant utiliser le profil <code>local</code>.
+Pour ce faire, vous pouvez indiquer à Spring que le profil local est le profil à utiliser par défaut en absence de tout autre profil.</p>
+</div>
+<div class="paragraph">
+<p>Pour ce faire, nous allons re-créer un fichier <code>application.properties</code>, et y ajouter une seule ligne:</p>
+</div>
+<div class="listingblock">
+<div class="title">application.properties</div>
+<div class="content">
+<pre class="pygments highlight nowrap"><code data-lang="properties"><span></span><span class="tok-na">spring.profiles.active</span><span class="tok-o">=</span><span class="tok-s">local</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sur_lenvironnement_clever"><a class="anchor" href="#_sur_lenvironnement_clever"></a><a class="link" href="#_sur_lenvironnement_clever">2.2.2. Sur l&#8217;environnement Clever</a></h4>
+<div class="paragraph">
+<p>Pour vos applications déployées sur Clever-Cloud, nous allons utiliser des variables d&#8217;environnement.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;ajout d&#8217;une variable d&#8217;environnement se fait directement depuis l&#8217;onglet d&#8217;une application:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/clever-env-vars.png" alt="clever env vars">
+</div>
+</div>
+<div class="paragraph">
+<p>Ajoutez à vos applications la variable <code>SPRING_PROFILES_ACTIVE=clever</code>.</p>
+</div>
+<div class="paragraph">
+<p>Plutôt que d&#8217;ajouter la variable manuellement à chaque application, vous pouvez aussi:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>créer un add-on de type <strong>Configuration provider</strong></p>
+</li>
+<li>
+<p>le lier à vos applications</p>
+</li>
+<li>
+<p>y ajouter votre variable d&#8217;environnement</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exposition_de_métriques"><a class="anchor" href="#_exposition_de_métriques"></a><a class="link" href="#_exposition_de_métriques">3. Exposition de métriques</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>L&#8217;exposition de métriques pour nos applications se fait avec spring-boot-actuator.</p>
+</div>
+<div class="sect2">
+<h3 id="_dépendance_maven"><a class="anchor" href="#_dépendance_maven"></a><a class="link" href="#_dépendance_maven">3.1. Dépendance maven</a></h3>
+<div class="paragraph">
+<p>Ajoutez la dépendance maven suivante dans vos projets :</p>
+</div>
+<div class="listingblock">
+<div class="title">pom.xml</div>
+<div class="content">
+<pre class="pygments highlight nowrap"><code data-lang="xml"><span></span><span class="tok-nt">&lt;dependency&gt;</span>
+    <span class="tok-nt">&lt;groupId&gt;</span>org.springframework.boot<span class="tok-nt">&lt;/groupId&gt;</span>
+    <span class="tok-nt">&lt;artifactId&gt;</span>spring-boot-starter-actuator<span class="tok-nt">&lt;/artifactId&gt;</span>
+<span class="tok-nt">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
 <tr>
-<th class="tableblock halign-left valign-top">API</th>
-<th class="tableblock halign-left valign-top">Fonctionnalité</th>
-<th class="tableblock halign-left valign-top">Points</th>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Ajouter la dépendance suffit à spring-boot pour configurer des routes par défaut.
+</td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pokemon-type-api</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">types de pokemon traduits, triés, traduits (en+fr), filtre par type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">trainer-api</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">gestion des trainers (GET/POST/DELETE) avec stockage BDD</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">trainer-api</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">API sécurisée en Basic HTTP login + mot de passe</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">game-ui</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">affichage du pokedex traduit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">game-ui</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IHM sécurisée (login avec les comptes de trainers)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">game-ui</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">affichage des trainers et de leurs pokémons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">game-ui</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">inscription au jeu, changement de mot de passe, ajout/suppression de pokemons à mon équipe</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">configuration cloud</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">configuration des api, gestion de profils tous micro-services, déploiement sur Clever-Cloud, métriques exposées</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">battle-api</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">gestion des combats (création/attaque), gain d&#8217;expérience</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">game-ui</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">intégration de l&#8217;écran de jeu</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">shop-api</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">achat d&#8217;objets et impacts sur le trainer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">battle-api / trainer-api</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">gestion de l&#8217;expérience</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">toutes API</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">qualité globale de code, collections Postman</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-</tr>
-</tbody>
 </table>
+</div>
+<div class="paragraph">
+<p>Démarrez ensuite vos applications.
+Vous devriez y observer des logs dédié à actuator au démarrage :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">INFO 28827 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+TRACE 28827 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Register "{GET /actuator/health, produces [application/vnd.spring-boot.actuator.v3+json || application/vnd.spring-boot.actuator.v2+json || application/json]}" to java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map&lt;java.lang.String, java.lang.String&gt;)
+TRACE 28827 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Register "{GET /actuator/health/**, produces [application/vnd.spring-boot.actuator.v3+json || application/vnd.spring-boot.actuator.v2+json || application/json]}" to java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map&lt;java.lang.String, java.lang.String&gt;)
+TRACE 28827 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Register "{GET /actuator/info, produces [application/vnd.spring-boot.actuator.v3+json || application/vnd.spring-boot.actuator.v2+json || application/json]}" to java.lang.Object org.springframework.boot.actuate.endpoint.web.servlet.AbstractWebMvcEndpointHandlerMapping$OperationHandler.handle(javax.servlet.http.HttpServletRequest,java.util.Map&lt;java.lang.String, java.lang.String&gt;)
+TRACE 28827 --- [main] s.b.a.e.w.s.WebMvcEndpointHandlerMapping : Register "{GET /actuator, produces [application/vnd.spring-boot.actuator.v3+json || application/vnd.spring-boot.actuator.v2+json || application/json]}" to public java.util.Map&lt;java.lang.String, java.util.Map&lt;java.lang.String, org.springframework.boot.actuate.endpoint.web.Link&gt;&gt; org.springframework.boot.actuate.endpoint.web.servlet.WebMvcEndpointHandlerMapping$WebMvcLinksHandler.links(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Consultez enfin pour vos services le endpoint "/actuator/health" :</p>
+</div>
+<div class="listingblock">
+<div class="title">GET localhost:8080/actuator/health</div>
+<div class="content">
+<pre class="pygments highlight nowrap"><code data-lang="json"><span></span><span class="tok-p">{</span><span class="tok-nt">&quot;status&quot;</span><span class="tok-p">:</span><span class="tok-s2">&quot;UP&quot;</span><span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_activer_dautres_endpoints"><a class="anchor" href="#_activer_dautres_endpoints"></a><a class="link" href="#_activer_dautres_endpoints">3.2. Activer d&#8217;autres endpoints</a></h3>
+<div class="paragraph">
+<p>spring-boot-actuator propose de nombreux endpoints par défaut.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-endpoints" class="bare">https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-endpoints</a></p>
+</div>
+<div class="paragraph">
+<p>Exposez au moins les endpoints suivants :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>env</code></p>
+</li>
+<li>
+<p><code>metrics</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Allez jetter un oeil aux endpoints suivants :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://localhost:8080/actuator/env" class="bare">http://localhost:8080/actuator/env</a></p>
+</li>
+<li>
+<p><a href="http://localhost:8080/actuator/metrics" class="bare">http://localhost:8080/actuator/metrics</a></p>
+</li>
+<li>
+<p><a href="http://localhost:8080/actuator/metrics/process.cpu.usage" class="bare">http://localhost:8080/actuator/metrics/process.cpu.usage</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_consommation_dun_bucket"><a class="anchor" href="#_consommation_dun_bucket"></a><a class="link" href="#_consommation_dun_bucket">4. Consommation d&#8217;un bucket</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dans cette partie, nous allons connecter le micro-service <code>battle-api</code> à  un bucket, dans lequel nous allons stocker des rapports de combat.</p>
+</div>
+<div class="paragraph">
+<p>Lorsqu&#8217;un combat est terminé, nous allons le stocker dans un fichier au format JSON, à  titre d&#8217;archivage.</p>
+</div>
+<div class="sect2">
+<h3 id="_création_du_bucket"><a class="anchor" href="#_création_du_bucket"></a><a class="link" href="#_création_du_bucket">4.1. Création du bucket</a></h3>
+<div class="paragraph">
+<p>Dans Clever-Cloud, créez un add-on de type <strong>Cellar S3 storage</strong>, ne le liez pas tout de suite à une application.
+Nommez le <em>cellar-&lt;Votre Pseudo Github&gt;</em>.</p>
+</div>
+<div class="paragraph">
+<p>Dans l&#8217;add-on, créez un bucket, nommez-le <em>battle-reports-&lt;Votre Pseudo Github&gt;</em></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+les buckets doivent avoir un nom unique parmi tous les buckets existants.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_battle_api"><a class="anchor" href="#_battle_api"></a><a class="link" href="#_battle_api">4.2. battle-api</a></h3>
+<div class="sect3">
+<h4 id="_dépendance_spring"><a class="anchor" href="#_dépendance_spring"></a><a class="link" href="#_dépendance_spring">4.2.1. Dépendance Spring</a></h4>
+<div class="paragraph">
+<p>Pour consommer un bucket, nous allons utiliser le client du SDK Amazon S3.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Les buckets exposés par Clever-Cloud sont compatibles avec l&#8217;API Amazon S3.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ajoutez la dépendance suivante à votre code :</p>
+</div>
+<div class="listingblock">
+<div class="title">pom.xml</div>
+<div class="content">
+<pre class="pygments highlight nowrap"><code data-lang="xml"><span></span><span class="tok-nt">&lt;dependency&gt;</span>
+  <span class="tok-nt">&lt;groupId&gt;</span>com.amazonaws<span class="tok-nt">&lt;/groupId&gt;</span>
+  <span class="tok-nt">&lt;artifactId&gt;</span>aws-java-sdk-s3<span class="tok-nt">&lt;/artifactId&gt;</span>
+  <span class="tok-nt">&lt;version&gt;</span>1.12.109<span class="tok-nt">&lt;/version&gt;</span>
+<span class="tok-nt">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ajout_de_nouvelles_properties"><a class="anchor" href="#_ajout_de_nouvelles_properties"></a><a class="link" href="#_ajout_de_nouvelles_properties">4.2.2. Ajout de nouvelles properties</a></h4>
+<div class="paragraph">
+<p>Dans l&#8217;onglet <em>Information</em> de l&#8217;add-on Cellar, sur Clever-Cloud, on peut voir que l&#8217;add-on expose des variables d&#8217;environnement.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/cellar-env.png" alt="cellar env">
+</div>
+</div>
+<div class="paragraph">
+<p>Créez dans votre fichier <code>application-local.properties</code> les 3 properties correspondant aux variables d&#8217;environnement.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Pour l&#8217;exécution sur Clever-Cloud, les variables d&#8217;environnement seront directement injectées à l&#8217;application, nous n&#8217;avons pas besoin de les déclarer dans le profil <code>clever</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_dun_client_s3"><a class="anchor" href="#_configuration_dun_client_s3"></a><a class="link" href="#_configuration_dun_client_s3">4.2.3. Configuration d&#8217;un client S3</a></h4>
+<div class="paragraph">
+<p>Créez une classe de configuration, dans laquelle vous créez un <code>@Bean</code> de type <code>AmazonS3</code>,
+un peu à la manière de ce qu&#8217;on a déjà fait pour les <code>RestTemplate</code> par exemple.</p>
+</div>
+<div class="paragraph">
+<p>Recevez en injection de dépendance avec <code>@Value</code> les 3 properties Cellar.</p>
+</div>
+<div class="paragraph">
+<p>Initialisez votre client S3 avec le code suivant (à adapter):</p>
+</div>
+<div class="listingblock">
+<div class="title">CellarConfiguration.java</div>
+<div class="content">
+<pre class="pygments highlight nowrap"><code data-lang="java"><span></span><span class="tok-n">AWSCredentials</span> <span class="tok-n">credentials</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">BasicAWSCredentials</span><span class="tok-o">(</span>
+  <span class="tok-n">cellarKeyId</span><span class="tok-o">,</span>
+  <span class="tok-n">cellarKeySecret</span>
+<span class="tok-o">);</span>
+
+<span class="tok-n">AmazonS3</span> <span class="tok-n">s3client</span> <span class="tok-o">=</span> <span class="tok-n">AmazonS3ClientBuilder</span>
+    <span class="tok-o">.</span><span class="tok-na">standard</span><span class="tok-o">()</span>
+    <span class="tok-o">.</span><span class="tok-na">withCredentials</span><span class="tok-o">(</span><span class="tok-k">new</span> <span class="tok-n">AWSStaticCredentialsProvider</span><span class="tok-o">(</span><span class="tok-n">credentials</span><span class="tok-o">))</span>
+    <span class="tok-o">.</span><span class="tok-na">withEndpointConfiguration</span><span class="tok-o">(</span><span class="tok-k">new</span> <span class="tok-n">AwsClientBuilder</span><span class="tok-o">.</span><span class="tok-na">EndpointConfiguration</span><span class="tok-o">(</span><span class="tok-n">cellarHost</span><span class="tok-o">,</span><span class="tok-s">&quot;&quot;</span><span class="tok-o">))</span>
+    <span class="tok-o">.</span><span class="tok-na">build</span><span class="tok-o">();</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_création_dun_objet_dans_le_bucket"><a class="anchor" href="#_création_dun_objet_dans_le_bucket"></a><a class="link" href="#_création_dun_objet_dans_le_bucket">4.2.4. Création d&#8217;un objet dans le bucket</a></h4>
+<div class="paragraph">
+<p>Pour créer un nouvel objet dans le bucket, vous pouvez utiliser la méthode <code>putObject(String bucketName,String key,String content)</code>.</p>
+</div>
+<div class="paragraph">
+<p>À la fin d&#8217;un combat, sérialisez l&#8217;objet Battle en JSON (en utilisant un ObjectMapper), puis créez un nouvel objet dans votre bucket,
+ayant comme clé <em>&lt;Battle.id&gt;.json</em>.</p>
+</div>
+<div class="paragraph">
+<p>Déployez votre code modifié, et liez votre add-on cellar à votre <em>battle-api</em>, pour que ses variables d&#8217;environnement soient injectées.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parcours_du_bucket"><a class="anchor" href="#_parcours_du_bucket"></a><a class="link" href="#_parcours_du_bucket">4.2.5. Parcours du bucket</a></h4>
+<div class="paragraph">
+<p>Clever-cloud ne propose pas d&#8217;IHM pour parcourir les buckets.
+Vous pouvez utiliser <a href="https://www.filestash.app/aws-s3-explorer.html" class="bare">https://www.filestash.app/aws-s3-explorer.html</a> pour explorer votre bucket, en y saisissant:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>votre access key id (CELLAR_ADDON_KEY_ID)</p>
+</li>
+<li>
+<p>votre secret access key (CELLAR_ADDON_KEY_SECRET)</p>
+</li>
+<li>
+<p>le endpoint (dans la partie advanced) (CELLAR_ADDON_HOST)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-11-12 16:44:43 +0100
+Last updated 2021-11-12 16:32:13 +0100
 </div>
 </div>
+<style>
+pre.pygments .hll { background-color: #ffffcc }
+pre.pygments  { background: #f8f8f8; }
+pre.pygments .tok-c { color: #408080; font-style: italic } /* Comment */
+pre.pygments .tok-err { border: 1px solid #FF0000 } /* Error */
+pre.pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
+pre.pygments .tok-o { color: #666666 } /* Operator */
+pre.pygments .tok-ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+pre.pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
+pre.pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
+pre.pygments .tok-cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+pre.pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
+pre.pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
+pre.pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
+pre.pygments .tok-ge { font-style: italic } /* Generic.Emph */
+pre.pygments .tok-gr { color: #FF0000 } /* Generic.Error */
+pre.pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+pre.pygments .tok-gi { color: #00A000 } /* Generic.Inserted */
+pre.pygments .tok-go { color: #888888 } /* Generic.Output */
+pre.pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+pre.pygments .tok-gs { font-weight: bold } /* Generic.Strong */
+pre.pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+pre.pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
+pre.pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+pre.pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+pre.pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+pre.pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
+pre.pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+pre.pygments .tok-kt { color: #B00040 } /* Keyword.Type */
+pre.pygments .tok-m { color: #666666 } /* Literal.Number */
+pre.pygments .tok-s { color: #BA2121 } /* Literal.String */
+pre.pygments .tok-na { color: #7D9029 } /* Name.Attribute */
+pre.pygments .tok-nb { color: #008000 } /* Name.Builtin */
+pre.pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
+pre.pygments .tok-no { color: #880000 } /* Name.Constant */
+pre.pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
+pre.pygments .tok-ni { color: #999999; font-weight: bold } /* Name.Entity */
+pre.pygments .tok-ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+pre.pygments .tok-nf { color: #0000FF } /* Name.Function */
+pre.pygments .tok-nl { color: #A0A000 } /* Name.Label */
+pre.pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+pre.pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
+pre.pygments .tok-nv { color: #19177C } /* Name.Variable */
+pre.pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+pre.pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
+pre.pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
+pre.pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
+pre.pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
+pre.pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
+pre.pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
+pre.pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
+pre.pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
+pre.pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
+pre.pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
+pre.pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+pre.pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
+pre.pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+pre.pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
+pre.pygments .tok-si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+pre.pygments .tok-sx { color: #008000 } /* Literal.String.Other */
+pre.pygments .tok-sr { color: #BB6688 } /* Literal.String.Regex */
+pre.pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
+pre.pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
+pre.pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
+pre.pygments .tok-fm { color: #0000FF } /* Name.Function.Magic */
+pre.pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
+pre.pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
+pre.pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
+pre.pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
+pre.pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",
