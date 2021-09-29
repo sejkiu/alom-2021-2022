@@ -653,7 +653,7 @@ Ajoutez le bloc suivant (au dessus du bloc `<dependencies>` :
 <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId> <!--1-->
-    <version>2.3.8</version>
+    <version>2.5.5</version>
 </parent>
 ----
 <1> On importe le pom.xml parent de spring-boot. Cet _héritage_ nous permet de bénéficier
