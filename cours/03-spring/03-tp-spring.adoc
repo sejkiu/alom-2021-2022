@@ -710,13 +710,11 @@ class PokemonTypeControllerTest {
         var service = mock(PokemonTypeService.class);
         var controller = new PokemonTypeController(service);
 
-        var pikachu = new PokemonType();
-        pikachu.setId(25);
-        pikachu.setName("pikachu");
+        var pikachu = new PokemonType(25, "pikachu", null, List.of());
         when(service.getPokemonType(25)).thenReturn(pikachu);
 
         var pokemon = controller.getPokemonTypeFromId(25);
-        assertEquals("pikachu", pokemon.getName());
+        assertEquals("pikachu", pokemon.name());
 
         verify(service).getPokemonType(25);
     }

@@ -1875,9 +1875,7 @@ mais nous allons utiliser toute la puissance de Spring.</p>
 33
 34
 35
-36
-37
-38</pre></div></td><td class="code"><pre><span></span><span class="tok-kn">package</span> <span class="tok-nn">com.miage.alom.tp.pokemon_type_api.controller</span><span class="tok-o">;</span>
+36</pre></div></td><td class="code"><pre><span></span><span class="tok-kn">package</span> <span class="tok-nn">com.miage.alom.tp.pokemon_type_api.controller</span><span class="tok-o">;</span>
 
 <span class="tok-kn">import</span> <span class="tok-nn">com.miage.alom.tp.pokemon_type_api.bo.PokemonType</span><span class="tok-o">;</span>
 <span class="tok-kn">import</span> <span class="tok-nn">com.miage.alom.tp.pokemon_type_api.service.PokemonTypeService</span><span class="tok-o">;</span>
@@ -1893,13 +1891,11 @@ mais nous allons utiliser toute la puissance de Spring.</p>
         <span class="tok-n">var</span> <span class="tok-n">service</span> <span class="tok-o">=</span> <span class="tok-n">mock</span><span class="tok-o">(</span><span class="tok-n">PokemonTypeService</span><span class="tok-o">.</span><span class="tok-na">class</span><span class="tok-o">);</span>
         <span class="tok-n">var</span> <span class="tok-n">controller</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">PokemonTypeController</span><span class="tok-o">(</span><span class="tok-n">service</span><span class="tok-o">);</span>
 
-        <span class="tok-n">var</span> <span class="tok-n">pikachu</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">PokemonType</span><span class="tok-o">();</span>
-        <span class="tok-n">pikachu</span><span class="tok-o">.</span><span class="tok-na">setId</span><span class="tok-o">(</span><span class="tok-mi">25</span><span class="tok-o">);</span>
-        <span class="tok-n">pikachu</span><span class="tok-o">.</span><span class="tok-na">setName</span><span class="tok-o">(</span><span class="tok-s">&quot;pikachu&quot;</span><span class="tok-o">);</span>
+        <span class="tok-n">var</span> <span class="tok-n">pikachu</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">PokemonType</span><span class="tok-o">(</span><span class="tok-mi">25</span><span class="tok-o">,</span> <span class="tok-s">&quot;pikachu&quot;</span><span class="tok-o">,</span> <span class="tok-kc">null</span><span class="tok-o">,</span> <span class="tok-n">List</span><span class="tok-o">.</span><span class="tok-na">of</span><span class="tok-o">());</span>
         <span class="tok-n">when</span><span class="tok-o">(</span><span class="tok-n">service</span><span class="tok-o">.</span><span class="tok-na">getPokemonType</span><span class="tok-o">(</span><span class="tok-mi">25</span><span class="tok-o">)).</span><span class="tok-na">thenReturn</span><span class="tok-o">(</span><span class="tok-n">pikachu</span><span class="tok-o">);</span>
 
         <span class="tok-n">var</span> <span class="tok-n">pokemon</span> <span class="tok-o">=</span> <span class="tok-n">controller</span><span class="tok-o">.</span><span class="tok-na">getPokemonTypeFromId</span><span class="tok-o">(</span><span class="tok-mi">25</span><span class="tok-o">);</span>
-        <span class="tok-n">assertEquals</span><span class="tok-o">(</span><span class="tok-s">&quot;pikachu&quot;</span><span class="tok-o">,</span> <span class="tok-n">pokemon</span><span class="tok-o">.</span><span class="tok-na">getName</span><span class="tok-o">());</span>
+        <span class="tok-n">assertEquals</span><span class="tok-o">(</span><span class="tok-s">&quot;pikachu&quot;</span><span class="tok-o">,</span> <span class="tok-n">pokemon</span><span class="tok-o">.</span><span class="tok-na">name</span><span class="tok-o">());</span>
 
         <span class="tok-n">verify</span><span class="tok-o">(</span><span class="tok-n">service</span><span class="tok-o">).</span><span class="tok-na">getPokemonType</span><span class="tok-o">(</span><span class="tok-mi">25</span><span class="tok-o">);</span>
     <span class="tok-o">}</span>
@@ -2554,7 +2550,7 @@ Cependant, nous pouvons développer des routes supportant des paramètres suppl�
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-29 08:15:08 +0200
+Last updated 2021-09-29 08:26:17 +0200
 </div>
 </div>
 </body>
