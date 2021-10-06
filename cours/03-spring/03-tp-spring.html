@@ -2477,11 +2477,13 @@ de ressources (en particulier notre fichier JSON), doivent être chargés diffé
  8
  9
 10
-11</pre></div></td><td class="code"><pre><span></span><span class="tok-kd">public</span> <span class="tok-nf">PokemonTypeRepositoryImpl</span><span class="tok-o">()</span> <span class="tok-o">{</span>
+11
+12</pre></div></td><td class="code"><pre><span></span><span class="tok-kd">public</span> <span class="tok-nf">PokemonTypeRepositoryImpl</span><span class="tok-o">()</span> <span class="tok-o">{</span>
     <span class="tok-k">try</span> <span class="tok-o">{</span>
         <span class="tok-n">var</span> <span class="tok-n">pokemonsStream</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">ClassPathResource</span><span class="tok-o">(</span><span class="tok-s">&quot;pokemons.json&quot;</span><span class="tok-o">).</span><span class="tok-na">getInputStream</span><span class="tok-o">();</span>
 
         <span class="tok-n">var</span> <span class="tok-n">objectMapper</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">ObjectMapper</span><span class="tok-o">();</span>
+        <span class="tok-n">objectMapper</span><span class="tok-o">.</span><span class="tok-na">configure</span><span class="tok-o">(</span><span class="tok-n">DeserializationFeature</span><span class="tok-o">.</span><span class="tok-na">FAIL_ON_UNKNOWN_PROPERTIES</span><span class="tok-o">,</span> <span class="tok-kc">false</span><span class="tok-o">);</span>
         <span class="tok-n">var</span> <span class="tok-n">pokemonsArray</span> <span class="tok-o">=</span> <span class="tok-n">objectMapper</span><span class="tok-o">.</span><span class="tok-na">readValue</span><span class="tok-o">(</span><span class="tok-n">pokemonsStream</span><span class="tok-o">,</span> <span class="tok-n">PokemonType</span><span class="tok-o">[].</span><span class="tok-na">class</span><span class="tok-o">);</span>
         <span class="tok-k">this</span><span class="tok-o">.</span><span class="tok-na">pokemons</span> <span class="tok-o">=</span> <span class="tok-n">Arrays</span><span class="tok-o">.</span><span class="tok-na">asList</span><span class="tok-o">(</span><span class="tok-n">pokemonsArray</span><span class="tok-o">);</span>
     <span class="tok-o">}</span> <span class="tok-k">catch</span> <span class="tok-o">(</span><span class="tok-n">IOException</span> <span class="tok-n">e</span><span class="tok-o">)</span> <span class="tok-o">{</span>
@@ -2550,7 +2552,7 @@ Cependant, nous pouvons développer des routes supportant des paramètres suppl�
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-29 08:26:17 +0200
+Last updated 2021-10-06 09:22:54 +0200
 </div>
 </div>
 </body>

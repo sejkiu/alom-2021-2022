@@ -1029,6 +1029,7 @@ public PokemonTypeRepositoryImpl() {
         var pokemonsStream = new ClassPathResource("pokemons.json").getInputStream();
 
         var objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         var pokemonsArray = objectMapper.readValue(pokemonsStream, PokemonType[].class);
         this.pokemons = Arrays.asList(pokemonsArray);
     } catch (IOException e) {
