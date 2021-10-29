@@ -1,0 +1,112 @@
+:source-highlighter: pygments
+:prewrap!:
+
+:icons: font
+
+:iconfont-cdn: https://use.fontawesome.com/releases/v5.4.2/css/all.css
+
+:toc: left
+:toclevels: 4
+
+:linkattrs:
+
+:sectlinks:
+:sectanchors:
+:sectnums:
+
+:experimental:
+
+:stem:
+
+= ALOM - Critères de notation
+
+== Modalités de rendu
+
+Le rendu se fait via vos repositories Github.
+
+Vous devez push votre code directement sur les repositories qui vous sont affectés.
+
+Les repositories seront clôturés le 22 décembre à 20h. Vous avez donc encore un peu de temps pour finaliser votre projet.
+
+Le projet est bien constitué de 3 parties jusqu'à aujourd'hui, et d'autres parties qui seront initialisées dans les TP à venir:
+
+* pokemon-type-api
+* trainer-api
+* game-ui
+
+NOTE: Le tp "handcraft" ne fait pas partie du rendu.
+
+Dans chacun des repository :
+
+* le code !
+* les tests !!
+* une collection Postman pour les API exposant de l'HTTP (pas l'api notification, ni configuration)
+* un README.md détaillant
+** la façon de lancer le projet localement (commandes maven ? properties à configurer ?)
+** l'url de publication de votre service s'il est publié sur un cloud heroku/clever
+
+NOTE: Evitez de commiter/pusher vos répertoires `target` et vos fichiers eclipse/intelliJ `.idea`, `.settings`...
+Vous pouvez ajouter un fichier `.gitignore` à la racine de vos projets pour cela.
+
+== Critères de notation
+
+|===
+| API | Fonctionnalité | Points
+
+| pokemon-type-api
+| types de pokemon traduits, triés, traduits (en+fr), filtre par type
+| 1
+
+| trainer-api
+| gestion des trainers (GET/POST/DELETE) avec stockage BDD
+| 1
+
+| trainer-api
+| API sécurisée en Basic HTTP login + mot de passe
+| 1
+
+| game-ui
+| affichage du pokedex traduit
+| 1
+
+| game-ui
+| IHM sécurisée (login avec les comptes de trainers)
+| 1
+
+| game-ui
+| affichage des trainers et de leurs pokémons
+| 1
+
+| game-ui
+| inscription au jeu, changement de mot de passe, ajout/suppression de pokemons à mon équipe
+| 2
+
+| configuration-api / configuration-repository
+| configuration des api, gestion de profils tous micro-services
+| 1
+
+// socle commun : 9 points
+
+| battle-api
+| gestion des combats (création/attaque)
+| 3
+
+| game-ui
+| intégration de l'écran de jeu
+| 1
+
+| shop-api
+| achat d'objets et impacts sur le trainer
+| 3
+
+| battle-api / trainer-api
+| gestion de l'expérience
+| 2
+
+| toutes API
+| qualité globale de code, collections Postman
+| 2
+
+// devs supplémentaires : 11 points
+
+|===
